@@ -8,13 +8,15 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { NewProductComponent } from './new-product/new-product.component';
+import { UpdateProductListComponent } from './update-product-list/update-product-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     ProductListComponent,
-    NewProductComponent
+    NewProductComponent,
+    UpdateProductListComponent
   ],
   imports: [
     BrowserModule,

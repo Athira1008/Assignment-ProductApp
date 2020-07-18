@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductModel } from './product.model';
 import { ProductService } from '../product.service';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/toPromise'
+import{ Router } from '@angular/router';
+// import 'rxjs/add/operator/map';
+// import 'rxjs/add/operator/toPromise'
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css'],
-  providers:[ProductService]
+  // providers:[ProductService]
 })
 export class ProductListComponent implements OnInit  {
   // constructor() { }
@@ -16,7 +17,7 @@ export class ProductListComponent implements OnInit  {
   imageWidth: number= 50;
   imageMargin: number= 2;
   showImage: boolean = false;
-  constructor(private productService: ProductService){
+  constructor(private productService: ProductService,private router:Router){
 
   }
   toggleImage():void{
@@ -43,34 +44,26 @@ export class ProductListComponent implements OnInit  {
     this.productService.getProducts().subscribe((data)=>{
       this.products=JSON.parse(JSON.stringify(data));
     });
-    this.refreshProducts();
+    
   }
 
-
-
-refreshProducts(){
-  this.productService.getProducts().subscribe((res)=>{
-    this.products= res as ProductModel[];;
-  });
-}
-onDelete(_id:string)
+deleteProduct(id):void
 {
    if(confirm('Are you sure to delete this record?')==true){
-     this.productService.deleteProduct(_id)
-    //  .subscribe((data)=>{
-      console.log("called");
-//    alert("Success");
-      this.refreshProducts();
-    //  });
+     this.productService.deleteProduct(id)
+     .subscribe((data)=>{
+      this.products=JSON.parse(JSON.stringify(data));
+
+      // console.log("called");
+     //    alert("Success");
+     
+     });
+   }
+   else{
+     this.router.navigate(['/']);
    }
   }
-
-// {
-//   this.productService.deleteProduct(id);
-//   console.log("called");
-//   alert("Success");
-  
-// }
-// }
-
 }
+
+
+

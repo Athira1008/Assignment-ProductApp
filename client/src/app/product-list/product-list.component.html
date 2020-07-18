@@ -17,6 +17,8 @@
                         <th>Available</th>
                         <th>Price</th>
                         <th>5 Star Rating</th>
+                        <th></th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -33,6 +35,7 @@
                         <td>{{product.releaseDate}}</td>
                         <td>{{product.price}}</td>
                         <td>{{product.starRating}}</td>
+                        <td><a routerLink="/edit/{{product._id}}" class="btn btn-primary">Edit</a></td>
                         <td><input type="button" value="Delete" (click)='deleteProduct(product._id)' class="btn btn-danger"></td>
                     </tr>
                 </tbody>
